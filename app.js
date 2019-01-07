@@ -1,3 +1,4 @@
+// build a config object will all the settings
 var config = {
     type: Phaser.AUTO,
     width: "100vw",
@@ -19,7 +20,29 @@ var config = {
         update: update
     }
 };
-
-
+ 
+// build the game and start // giving the config as a parameter 
 var game = new Phaser.Game(config);
+
+// preload function to load assets before the game
+function preload() {
+    this.load.image("sky", "assets/sky.png");
+    this.load.image("ground", "assets/platform.png");
+    this.load.image("star", "assets/star.png");
+    this.load.image("bomb", "assets/bomb.png");
+    this.load.spritesheet("dude",
+        "assets/dude.png", {
+            frameWidth: 32,
+            frameHeight: 48
+        }
+    );
+}
+
+// create function gets ran at start of game
+function create() {
+    // add player to the game
+    player = this.physics.add.sprite(100, 450, "dude");
+
+    
+}
 

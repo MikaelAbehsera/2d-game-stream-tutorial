@@ -40,9 +40,14 @@ function preload() {
 
 // create function gets ran at start of game
 function create() {
+
     // add player to the game
     player = this.physics.add.sprite(100, 450, "dude");
+    // set bounce scale for player
+    player.setBounce(0.2);
+    // don't allow player to leave screen so add colition with world borders to true
+    player.setCollideWorldBounds(true); 4
 
-    
+
 }
 

@@ -26,6 +26,7 @@ var game = new Phaser.Game(config);
 
 // preload function to load assets before the game
 function preload() {
+    this.load.image("ground", "assets/platform.png");
     this.load.spritesheet("dude",
         "assets/dude.png", {
             frameWidth: 32,
@@ -43,16 +44,19 @@ var keyboard;
 // create function gets ran at start of game
 function create() {
 
-    // add player to the game
+    platforms = this.physics.add.staticGroup();
+    platforms.create(400, 568, "ground").setScale(2).refreshBody();
+
+    // add dynamic physics to player body // player has 9 frames total ==> 4 for running left ==> 1 for facing the camera ==> 4 for running right
     player = this.physics.add.sprite(100, 450, "dude");
     // set bounce scale for player
     player.setBounce(0.2);
     // don't allow player to leave screen so add colition with world borders to true
-    player.setCollideWorldBounds(true); 4
+    player.setCollideWorldBounds(true);
 
     // build the running animation
 
-    // running left animation
+    // running left animation 
     this.anims.create({
         key: "left",
         // frames 0-3 for left
@@ -92,14 +96,14 @@ function create() {
 }
 
 function update() {
-    keyboard = this.input.keyboard.createCursorKey();
+    cursors = this.input.keyboard.createCursorKeys();
 
-    if (keyboard.left.isDown) {
+    if (cursors.left.isDown) {
         // if left arrow is pressed
         player.setVelocityX(-160);
         player.anims.play("left", true);
 
-    } else if (keyboard.right.isDown) {
+    } else if (cursors.right.isDown) {
         // if right arrow is pressed
         player.setVelocityX(160);
         player.anims.play("right", true);
@@ -111,7 +115,7 @@ function update() {
 
     }
 
-    if (keyboard.up.isDown && player.body.touching.down) {
+    if (cursors.up.isDown && player.body.touching.down) {
         // if user jumps while on the ground
         player.setVelocityY(-330);
     }

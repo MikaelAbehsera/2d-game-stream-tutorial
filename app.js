@@ -100,6 +100,12 @@ function create() {
 }
 
 function update() {
+    // if (player.x < 30 || player.x > 770) {
+    //     player.setVelocityY(-150);
+    //     console.log("true")
+    // }
+
+
   cursors = this.input.keyboard.createCursorKeys();
 
   if (cursors.left.isDown) {
@@ -118,6 +124,6 @@ function update() {
 
   if (cursors.up.isDown && player.body.touching.down) {
     // if user jumps while on the ground
-    player.setVelocityY(-330);
+    player.setVelocityY(-150);
   }
 }

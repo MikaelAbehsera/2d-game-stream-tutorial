@@ -39,7 +39,6 @@ function preload() {
 var platforms;
 var player;
 var keyboard;
-var pikas;
 
 // create function gets ran at start of game
 function create() {
@@ -96,30 +95,11 @@ function create() {
     repeat: -1
   });
 
-  pikas = this.physics.add.group({
-    key: "pika",
-    repeat: 5,
-    setXY: {
-      x: 100,
-      y: 0,
-      stepX: 75
-    }
-  });
-
-  pikas.children.iterate(function(child) {
-    child.setBounceY(Phaser.Math.FloatBetween(0.1, 0.2));
-  });
-
   // add a collision relation between player and platforms
   this.physics.add.collider(player, platforms);
-
-  // collision checking between player and pika
-  this.physics.add.collider(player, pikas);
 }
 
 function update() {
-    
-
   cursors = this.input.keyboard.createCursorKeys();
 
   if (cursors.left.isDown) {

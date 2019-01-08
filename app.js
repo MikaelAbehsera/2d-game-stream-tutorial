@@ -104,7 +104,8 @@ function update() {
     //     player.setVelocityY(-150);
     //     console.log("true")
     // }
-
+    // the above is the elevator code
+    
 
   cursors = this.input.keyboard.createCursorKeys();
 
